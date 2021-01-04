@@ -11,25 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: 🏗️ Setup NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
       - name: ECHO CACHE
         run: echo ${{steps.yarn-cache-dir-path.outputs.dir}}
-      # - name: 👀 Cache node_modules
-      #   uses: actions/cache@v2
-      #   id: yarn-cache
-      #   with:
-      #       path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-      #       key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #       restore-keys: |
-      #         ${{ runner.os }}-yarn-
-      # - name: 🏗️ Setup NodeJS
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: "14.x"
-      # - name: 🏃‍♂️  Install Deps
-      #   run: yarn install --frozen-lockfile
+      - name: 👀 Cache node_modules
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+            path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+            restore-keys: |
+              ${{ runner.os }}-yarn-
+      - name: 🏃‍♂️  Install Deps
+        run: yarn install --frozen-lockfile
       # - name: 🛠️ Build
       #   run: yarn build
       # - name: 🧪 TEST
