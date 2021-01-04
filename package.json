@@ -40,18 +40,12 @@
   "keywords": [],
   "author": "André de Albuquerque <oss@itstheandre.com>",
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
-    }
+  "publishConfig": {
+    "access": "public"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
