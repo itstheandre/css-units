@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: 💸 Get yarn cache
-        id: yarn-cache-dir-path
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-pat
         run: echo "::set-output name=dir::$(yarn cache dir)
       - name: 👀 Cache node_modules
         uses: actions/cache@v2
